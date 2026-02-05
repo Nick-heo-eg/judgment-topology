@@ -1,0 +1,57 @@
+policy_id: LEGAL_EXECUTION_STOP_V1
+version: 1.0
+scope:
+  plugin: legal
+  commands:
+    - triage-nda
+    - review-contract
+    - respond
+
+stop_conditions:
+  - id: LEGAL_CLASSIFICATION_USED_FOR_EXECUTION
+    when:
+      model_output_contains: [GREEN, YELLOW, RED]
+      action_intent: [approve, sign, send, execute]
+    decision: HOLD
+    reason: >
+      Legal classification is advisory output, not execution authority.
+      Model assessment (GREEN/YELLOW/RED) provides information but does not
+      constitute legal approval. Human review required before any binding action.
+    requires:
+      - human_explicit_allow
+      - decision_rationale
+
+  - id: IRREVERSIBLE_COMMITMENT
+    when:
+      downstream_effect: irreversible
+      legal_binding: true
+    decision: STOP
+    reason: >
+      Irreversible legal commitment detected. Execution permanently blocked.
+      Actions that create binding obligations must not proceed without
+      explicit human authority outside the AI system.
+
+  - id: NDA_APPROVAL_ATTEMPT
+    when:
+      command: triage-nda
+      model_classification: GREEN
+      implicit_approval: true
+    decision: HOLD
+    reason: >
+      NDA classified as GREEN (low risk) by model. However, classification
+      does not equal approval authority. Even low-risk NDAs require human
+      judgment before signing or commitment.
+    requires:
+      - legal_counsel_review
+      - authorized_signatory_approval
+
+# Audit Requirements
+audit:
+  log_all_holds: true
+  log_all_stops: true
+  retention_days: 2555  # 7 years (legal compliance standard)
+
+# Metadata
+created: 2026-02-06
+purpose: Prevent automatic execution based on legal AI classification
+reference: judgment-topology-v1

@@ -1,0 +1,48 @@
+# Comparison Screenshot Placeholder
+
+This file is a placeholder for the actual side-by-side screenshot comparison.
+
+## Expected Content
+
+Two screenshots side by side:
+
+### Left: Baseline (No Judgment Layer)
+```
+/triage-nda
+
+→ Model: GREEN (92% confidence)
+→ System: ✓ APPROVED for standard workflow
+→ Next: Route to signing queue
+```
+
+### Right: With Judgment Layer
+```
+/triage-nda
+
+→ Model: GREEN (92% confidence)
+→ Judgment: ⚠️ HOLD
+→ Reason: Classification ≠ approval authority
+→ Required: Legal counsel review, authorized signatory
+→ Evidence: decision.trace.jsonl
+```
+
+## How to Generate
+
+1. Run the actual plugin in both configurations
+2. Capture terminal output or UI screenshots
+3. Place side-by-side comparison image here as `comparison.png`
+4. Delete this placeholder file
+
+## Visual Impact
+
+This single image demonstrates:
+- Same input
+- Same model output
+- Different governance outcome
+- Clear execution boundary
+
+---
+
+**Status:** Awaiting actual screenshot capture
+**Format:** PNG (recommended 1920x1080 or higher)
+**Filename:** comparison.png (replace this placeholder)
