@@ -1,0 +1,7 @@
+{
+  "from_state": "string",
+  "to_state": "string",
+  "evidence": "string|null",
+  "timestamp": "string",
+  "authority": "string"
+}
