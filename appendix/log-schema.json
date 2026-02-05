@@ -1,7 +1,7 @@
 {
-  "from_state": "string",
-  "to_state": "string",
-  "evidence": "string|null",
-  "timestamp": "string",
-  "authority": "string"
+  "from_state": "HOLD",
+  "to_state": "STOP",
+  "evidence": null,
+  "timestamp": "2026-02-05T10:30:00Z",
+  "authority": "judgment-gate:v1"
 }
