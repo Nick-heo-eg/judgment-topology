@@ -2,6 +2,8 @@
 
 > **For the overall context and navigation map, start at: [stop-first-rag](https://github.com/Nick-heo-eg/stop-first-rag)**
 
+This repository defines structural constraints for separating judgment from execution, independent of model behavior.
+
 This repository defines a **minimal judgment topology** that prevents **undefined AI judgments** from transitioning into **execution**.
 
 It introduces an explicit, finite-state boundary between probabilistic generation and permissioned action, without modifying models, prompts, or training procedures.
